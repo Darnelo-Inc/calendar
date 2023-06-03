@@ -8,8 +8,8 @@ export interface IRoute {
 }
 
 export enum routePath {
-  HOME = "/calendar/",
-  LOGIN = "/calendar/login",
+  HOME = "/",
+  LOGIN = "/login",
 }
 
 export const publicRoutes: IRoute[] = [
