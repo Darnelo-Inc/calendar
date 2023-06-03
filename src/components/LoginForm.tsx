@@ -1,4 +1,4 @@
-import { Alert, Button, Form, Input } from "antd"
+import { Alert, Button, Card, Form, Input } from "antd"
 import { FC } from "react"
 import { rules } from "../utils/rules"
 import { useActions } from "../hooks/useActions"
@@ -13,8 +13,6 @@ const LoginForm: FC = () => {
     login({ ...data })
   }
 
-  const onFinishFailed = () => console.log("failed")
-
   return (
     <>
       {error && (
@@ -25,29 +23,31 @@ const LoginForm: FC = () => {
           style={{ position: "absolute", top: 100 }}
         />
       )}
-      <Form onFinish={onFinish} onFinishFailed={onFinishFailed}>
-        <Form.Item
-          label="Username"
-          name="username"
-          rules={[rules.require("Please input your username!")]}
-        >
-          <Input />
-        </Form.Item>
+      <Card>
+        <Form onFinish={onFinish}>
+          <Form.Item
+            label="Username"
+            name="username"
+            rules={[rules.require("Username: admin")]}
+          >
+            <Input />
+          </Form.Item>
 
-        <Form.Item
-          label="Password"
-          name="password"
-          rules={[rules.require("Please input your password!")]}
-        >
-          <Input.Password />
-        </Form.Item>
+          <Form.Item
+            label="Password"
+            name="password"
+            rules={[rules.require("Password: 123")]}
+          >
+            <Input.Password />
+          </Form.Item>
 
-        <Form.Item>
-          <Button type="primary" htmlType="submit" loading={loading}>
-            Login
-          </Button>
-        </Form.Item>
-      </Form>
+          <Form.Item>
+            <Button type="primary" htmlType="submit" loading={loading}>
+              Login
+            </Button>
+          </Form.Item>
+        </Form>
+      </Card>
     </>
   )
 }

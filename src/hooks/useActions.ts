@@ -1,10 +1,22 @@
+import { addEvent } from "./../store/actions/addEvent"
+import { getUsers } from "./../store/actions/getUsers"
+import { eventSlice } from "./../store/reducers/eventSlice"
 import { logout } from "./../store/actions/logout"
 import { login } from "./../store/actions/login"
 import { bindActionCreators } from "@reduxjs/toolkit"
 import { authSlice } from "../store/reducers/authSlice"
 import { useAppDispatch } from "./useRedux"
+import { getEvents } from "../store/actions/getEvents"
 
-const actions = { ...authSlice.actions, login, logout }
+const actions = {
+  ...authSlice.actions,
+  login,
+  logout,
+  ...eventSlice.actions,
+  getUsers,
+  addEvent,
+  getEvents,
+}
 
 export const useActions = () => {
   const dispatch = useAppDispatch()

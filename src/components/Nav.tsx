@@ -12,13 +12,15 @@ const Nav: FC = () => {
   const { isAuth } = useAppSelector(authSelector)
 
   const { logout } = useActions()
-  const username = localStorage.getItem("username")?.toString()
-
+  const { user } = useAppSelector(authSelector)
   return (
     <Header>
       <Menu theme="dark" mode="horizontal" selectable={false}>
+        <Menu.Item key={999} style={{ cursor: "default" }}>
+          {user.username}
+        </Menu.Item>
         {isAuth ? (
-          <Menu.Item onClick={() => logout({ username })} key={1}>
+          <Menu.Item onClick={() => logout(user.username)} key={1}>
             Exit
           </Menu.Item>
         ) : (
