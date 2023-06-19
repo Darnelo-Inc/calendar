@@ -7,6 +7,7 @@ import { bindActionCreators } from "@reduxjs/toolkit"
 import { authSlice } from "../store/reducers/authSlice"
 import { useAppDispatch } from "./useRedux"
 import { getEvents } from "../store/actions/getEvents"
+import { modalSlice } from "../store/reducers/modalSlice"
 
 const actions = {
   ...authSlice.actions,
@@ -16,6 +17,7 @@ const actions = {
   getUsers,
   addEvent,
   getEvents,
+  ...modalSlice.actions,
 }
 
 export const useActions = () => {

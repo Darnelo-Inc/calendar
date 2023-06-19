@@ -30,7 +30,7 @@ const LoginForm: FC = () => {
             name="username"
             rules={[rules.require("Username: admin")]}
           >
-            <Input />
+            <Input placeholder="admin" />
           </Form.Item>
 
           <Form.Item
@@ -38,7 +38,7 @@ const LoginForm: FC = () => {
             name="password"
             rules={[rules.require("Password: 123")]}
           >
-            <Input.Password />
+            <Input.Password placeholder="123" />
           </Form.Item>
 
           <Form.Item>

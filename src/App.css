@@ -2,12 +2,14 @@
 *:before,
 *:after {
   box-sizing: border-box;
-}
-
-body {
   margin: 0;
+  padding: 0;
 }
 
 .h100 {
   height: calc(100vh - 64px);
+}
+
+.ant-layout {
+  background-color: #fff;
 }

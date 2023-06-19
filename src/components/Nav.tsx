@@ -1,35 +1,41 @@
-import { Menu } from "antd"
-import { Header } from "antd/es/layout/layout"
+import { Button, Layout } from "antd"
 import { FC } from "react"
-import { useNavigate } from "react-router-dom"
-import { routePath } from "../routes"
 import { useAppSelector } from "../hooks/useRedux"
 import { authSelector } from "../store/selectors"
 import { useActions } from "../hooks/useActions"
+import css from "../styles/Header.module.css"
 
 const Nav: FC = () => {
-  const nav = useNavigate()
   const { isAuth } = useAppSelector(authSelector)
 
-  const { logout } = useActions()
+  const { logout, toggleVisible } = useActions()
   const { user } = useAppSelector(authSelector)
   return (
-    <Header>
-      <Menu theme="dark" mode="horizontal" selectable={false}>
-        <Menu.Item key={999} style={{ cursor: "default" }}>
-          {user.username}
-        </Menu.Item>
-        {isAuth ? (
-          <Menu.Item onClick={() => logout(user.username)} key={1}>
-            Exit
-          </Menu.Item>
-        ) : (
-          <Menu.Item onClick={() => nav(routePath.LOGIN)} key={1}>
-            Login
-          </Menu.Item>
+    <Layout>
+      <Layout.Header className={css["nav-header"]}>
+        <h3 className={css.logo}>Scroll Feed</h3>
+
+        {isAuth && (
+          <div className={css.navMenu}>
+            <Button
+              className={css.navItem}
+              onClick={() => toggleVisible()}
+              danger
+              type="primary"
+            >
+              Add Event
+            </Button>
+            <Button
+              className={[css.navItem, css.logout].join(" ")}
+              type="primary"
+              onClick={() => logout(user.username)}
+            >
+              Logout
+            </Button>
+          </div>
         )}
-      </Menu>
-    </Header>
+      </Layout.Header>
+    </Layout>
   )
 }
 

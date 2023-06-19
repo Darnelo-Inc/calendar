@@ -1,0 +1,63 @@
+.nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px 0 24px;
+
+  background-color: #3850ff;
+  border-bottom: 0;
+}
+
+.navMenu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 55%;
+}
+
+.navItem {
+  margin-right: 15px;
+}
+
+.logout {
+  font-weight: 600;
+  color: white;
+
+  background-color: transparent;
+}
+
+.logo {
+  max-width: 100px;
+  margin-left: 30px;
+  color: white;
+
+  float: left;
+}
+
+.logo a {
+  display: inline-block;
+  font-size: 20px;
+  text-transform: capitalize;
+}
+
+.ant-drawer-body {
+  padding: 0;
+}
+
+.ant-drawer-body .ant-menu-horizontal > .ant-menu-item,
+.ant-drawer-body .ant-menu-horizontal > .ant-menu-submenu {
+  display: inline-block;
+  width: 100%;
+}
+
+.ant-drawer-body .ant-menu-horizontal {
+  border-bottom: none;
+}
+
+.ant-drawer-body .ant-menu-horizontal > .ant-menu-item:hover {
+  border-bottom-color: transparent;
+}
+
+.link {
+  all: unset;
+}
