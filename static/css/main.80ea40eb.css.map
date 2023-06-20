@@ -1,1 +1,0 @@
-{"version":3,"file":"static/css/main.80ea40eb.css","mappings":"AAAA,iBAGE,qBACF,CAEA,KACE,QACF,CAEA,MACE,yBACF","sources":["App.css"],"sourcesContent":["*,\n*:before,\n*:after {\n  box-sizing: border-box;\n}\n\nbody {\n  margin: 0;\n}\n\n.h100 {\n  height: calc(100vh - 64px);\n}\n"],"names":[],"sourceRoot":""}
