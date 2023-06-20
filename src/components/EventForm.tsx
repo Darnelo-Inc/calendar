@@ -30,13 +30,16 @@ const EventForm: FC<EventFormProps> = ({ guests, submit }) => {
   }
 
   const { user } = useAppSelector(authSelector)
+  const [form] = Form.useForm()
 
   const submitForm = () => {
     submit({ ...event, author: user.username })
+    form.resetFields()
+    form.setFieldValue("guest", undefined)
   }
 
   return (
-    <Form onFinish={submitForm}>
+    <Form onFinish={submitForm} form={form}>
       <Form.Item
         label="Event description"
         name="description"
@@ -57,7 +60,7 @@ const EventForm: FC<EventFormProps> = ({ guests, submit }) => {
         <DatePicker onChange={(date) => selectDate(date)} />
       </Form.Item>
 
-      <Form.Item label="Choose the guest">
+      <Form.Item label="Choose the guest" name="guest">
         <Select
           onChange={(guest) =>
             setEvent((prevEvent) => ({ ...prevEvent, guest }))
