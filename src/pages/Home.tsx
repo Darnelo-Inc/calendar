@@ -20,6 +20,8 @@ const Home: FC = () => {
     addEvent(event)
   }
 
+  const deleteHandler = () => {}
+
   useEffect(() => {
     getUsers()
     getEvents(user.username)
