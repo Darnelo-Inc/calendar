@@ -1,3 +1,4 @@
+import { removeEvent } from "./../store/actions/removeEvent"
 import { addEvent } from "./../store/actions/addEvent"
 import { getUsers } from "./../store/actions/getUsers"
 import { eventSlice } from "./../store/reducers/eventSlice"
@@ -18,6 +19,7 @@ const actions = {
   addEvent,
   getEvents,
   ...modalSlice.actions,
+  removeEvent,
 }
 
 export const useActions = () => {

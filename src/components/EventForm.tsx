@@ -33,7 +33,7 @@ const EventForm: FC<EventFormProps> = ({ guests, submit }) => {
   const [form] = Form.useForm()
 
   const submitForm = () => {
-    submit({ ...event, author: user.username })
+    submit({ ...event, author: user.username, id: Math.random() })
     form.resetFields()
     form.setFieldValue("guest", undefined)
   }
