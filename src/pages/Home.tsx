@@ -4,9 +4,14 @@ import { Layout, Modal } from "antd"
 import EventForm from "../components/EventForm"
 import { useActions } from "../hooks/useActions"
 import { useAppSelector } from "../hooks/useRedux"
-import { eventSelector, modalSelector } from "../store/selectors"
+import {
+  eventSelector,
+  localeSelector,
+  modalSelector,
+} from "../store/selectors"
 import { IEvent } from "../models/IEvent"
 import { authSelector } from "../store/selectors"
+import { Locale } from "../models/LocaleState"
 
 const Home: FC = () => {
   const modalVisible = useAppSelector(modalSelector)
@@ -14,6 +19,7 @@ const Home: FC = () => {
   const { guests, events } = useAppSelector(eventSelector)
   const { getUsers, addEvent, getEvents, toggleVisible } = useActions()
   const { user } = useAppSelector(authSelector)
+  const activeLocale = useAppSelector(localeSelector)
 
   const submitHandler = (event: IEvent) => {
     toggleVisible()
@@ -23,13 +29,14 @@ const Home: FC = () => {
   useEffect(() => {
     getUsers()
     getEvents(user.username)
-  }, [])
+  }, []) //eslint-disable-line
 
   return (
     <Layout>
       <EventCalendar events={events} />
+
       <Modal
-        title="Add Event"
+        title={activeLocale === Locale.en ? "Add Event" : "Создать событие"}
         open={modalVisible}
         onCancel={() => toggleVisible()}
         footer={null}

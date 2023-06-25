@@ -5,6 +5,9 @@ import { DeleteOutlined } from "@ant-design/icons"
 import { Dayjs } from "dayjs"
 import css from "../styles/Calendar.module.css"
 import { useActions } from "../hooks/useActions"
+import { useAppSelector } from "../hooks/useRedux"
+import { localeSelector } from "../store/selectors"
+import { setLocale } from "../utils/setLocale"
 
 interface EventCalendarProps {
   events: IEvent[]
@@ -12,6 +15,10 @@ interface EventCalendarProps {
 
 const EventCalendar: FC<EventCalendarProps> = ({ events }) => {
   const { removeEvent } = useActions()
+
+  const activeLocale = useAppSelector(localeSelector)
+
+  const locale = setLocale(activeLocale)
 
   const dateCellRender = (value: Dayjs) => {
     const formatedValue = value.format("YYYY.MM.DD")
@@ -37,7 +44,13 @@ const EventCalendar: FC<EventCalendarProps> = ({ events }) => {
     )
   }
 
-  return <Calendar dateCellRender={dateCellRender} className={css.calendar} />
+  return (
+    <Calendar
+      dateCellRender={dateCellRender}
+      className={css.calendar}
+      locale={locale}
+    />
+  )
 }
 
 export default EventCalendar

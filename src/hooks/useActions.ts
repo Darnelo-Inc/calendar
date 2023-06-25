@@ -9,6 +9,7 @@ import { authSlice } from "../store/reducers/authSlice"
 import { useAppDispatch } from "./useRedux"
 import { getEvents } from "../store/actions/getEvents"
 import { modalSlice } from "../store/reducers/modalSlice"
+import { localeSlice } from "../store/reducers/localeSlice"
 
 const actions = {
   ...authSlice.actions,
@@ -20,6 +21,7 @@ const actions = {
   getEvents,
   ...modalSlice.actions,
   removeEvent,
+  ...localeSlice.actions,
 }
 
 export const useActions = () => {

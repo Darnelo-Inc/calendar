@@ -5,7 +5,9 @@ import { IUser } from "../models/IUser"
 import { IEvent } from "../models/IEvent"
 import { Dayjs } from "dayjs"
 import { useAppSelector } from "../hooks/useRedux"
-import { authSelector } from "../store/selectors"
+import { authSelector, localeSelector } from "../store/selectors"
+import { setLocale } from "../utils/setLocale"
+import { Locale } from "../models/LocaleState"
 
 interface EventFormProps {
   guests: IUser[]
@@ -30,6 +32,10 @@ const EventForm: FC<EventFormProps> = ({ guests, submit }) => {
   }
 
   const { user } = useAppSelector(authSelector)
+  const activeLocale = useAppSelector(localeSelector)
+
+  const locale = setLocale(activeLocale)
+
   const [form] = Form.useForm()
 
   const submitForm = () => {
@@ -41,7 +47,9 @@ const EventForm: FC<EventFormProps> = ({ guests, submit }) => {
   return (
     <Form onFinish={submitForm} form={form}>
       <Form.Item
-        label="Event description"
+        label={
+          activeLocale === Locale.en ? "Event description" : "Описание события"
+        }
         name="description"
         rules={[rules.require()]}
       >
@@ -56,11 +64,22 @@ const EventForm: FC<EventFormProps> = ({ guests, submit }) => {
         />
       </Form.Item>
 
-      <Form.Item label="Event date" name="date" rules={[rules.require()]}>
-        <DatePicker onChange={(date) => selectDate(date)} />
+      <Form.Item
+        label={activeLocale === Locale.en ? "Event date" : "Дата события"}
+        name="date"
+        rules={[rules.require()]}
+      >
+        <DatePicker onChange={(date) => selectDate(date)} locale={locale} />
       </Form.Item>
 
-      <Form.Item label="Choose the guest" name="guest">
+      <Form.Item
+        label={
+          activeLocale === Locale.en
+            ? "Choose the guest"
+            : "Выберите гостя события"
+        }
+        name="guest"
+      >
         <Select
           onChange={(guest) =>
             setEvent((prevEvent) => ({ ...prevEvent, guest }))
@@ -75,7 +94,7 @@ const EventForm: FC<EventFormProps> = ({ guests, submit }) => {
       <Row justify="end">
         <Form.Item>
           <Button type="primary" htmlType="submit">
-            Create Event
+            {activeLocale === Locale.en ? "Create Event" : "Создать событие"}
           </Button>
         </Form.Item>
       </Row>
