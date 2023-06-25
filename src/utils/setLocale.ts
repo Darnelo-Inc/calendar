@@ -6,6 +6,35 @@ export const setLocale = (activeLocale: Locale) => {
   let locale
 
   ruLocale.lang.shortWeekDays = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"]
+  ruLocale.lang.shortMonths = [
+    "Январь",
+    "Февраль",
+    "Март",
+    "Апрель",
+    "Май",
+    "Июнь",
+    "Июль",
+    "Август",
+    "Сентябрь",
+    "Октябрь",
+    "Ноябрь",
+    "Декабрь",
+  ]
+
+  enLocale.lang.shortMonths = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ]
 
   switch (activeLocale) {
     case Locale.en:
