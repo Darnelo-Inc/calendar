@@ -33,6 +33,7 @@ const Nav: FC = () => {
                 checkedChildren="en"
                 unCheckedChildren="ru"
                 onChange={() => setLocale()}
+                style={{ backgroundColor: "#ff4d4f" }}
               />
 
               <Button
