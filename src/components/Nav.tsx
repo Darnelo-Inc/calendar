@@ -10,7 +10,7 @@ const Nav: FC = () => {
   const { isAuth, user } = useAppSelector(authSelector)
   const activeLocale = useAppSelector(localeSelector)
 
-  const { logout, toggleVisible, setLocale } = useActions()
+  const { logout, toggleAddEventModal, setLocale } = useActions()
 
   return (
     <Layout>
@@ -21,7 +21,7 @@ const Nav: FC = () => {
           <div className={css.navMenu}>
             <Button
               className={css.navItem}
-              onClick={() => toggleVisible()}
+              onClick={() => toggleAddEventModal()}
               danger
               type="primary"
             >

@@ -1,5 +1,5 @@
-import { Button, Calendar, Row } from "antd"
-import { FC } from "react"
+import { Button, Calendar, Modal, Row } from "antd"
+import { FC, useState } from "react"
 import { IEvent } from "../models/IEvent"
 import { DeleteOutlined } from "@ant-design/icons"
 import { Dayjs } from "dayjs"
@@ -8,17 +8,32 @@ import { useActions } from "../hooks/useActions"
 import { useAppSelector } from "../hooks/useRedux"
 import { localeSelector } from "../store/selectors"
 import { setLocale } from "../utils/setLocale"
+import { Locale } from "../models/LocaleState"
 
 interface EventCalendarProps {
   events: IEvent[]
 }
 
 const EventCalendar: FC<EventCalendarProps> = ({ events }) => {
-  const { removeEvent } = useActions()
-
+  const [eventToRemove, setEventToRemove] = useState<number | null>(null)
   const activeLocale = useAppSelector(localeSelector)
 
+  const { removeEvent } = useActions()
+
   const locale = setLocale(activeLocale)
+
+  const removeHandler = (id: number) => {
+    setEventToRemove(id)
+  }
+
+  const okRemove = () => {
+    if (eventToRemove) removeEvent(eventToRemove)
+    setEventToRemove(null)
+  }
+
+  const cancelRemove = () => {
+    setEventToRemove(null)
+  }
 
   const dateCellRender = (value: Dayjs) => {
     const formatedValue = value.format("YYYY.MM.DD")
@@ -36,7 +51,7 @@ const EventCalendar: FC<EventCalendarProps> = ({ events }) => {
             <Button
               icon={<DeleteOutlined />}
               className={css.event__icon}
-              onClick={() => removeEvent(ev.id)}
+              onClick={() => removeHandler(ev.id)}
             />
           </Row>
         ))}
@@ -45,11 +60,32 @@ const EventCalendar: FC<EventCalendarProps> = ({ events }) => {
   }
 
   return (
-    <Calendar
-      dateCellRender={dateCellRender}
-      className={css.calendar}
-      locale={locale}
-    />
+    <>
+      <Calendar
+        dateCellRender={dateCellRender}
+        className={css.calendar}
+        locale={locale}
+      />
+
+      <Modal
+        title={
+          activeLocale === Locale.en
+            ? "Are you sure to delete this event?"
+            : "Вы уверены, что хотите удалить это событие?"
+        }
+        open={!!eventToRemove}
+        onOk={() => okRemove()}
+        onCancel={() => cancelRemove()}
+        okText={activeLocale === Locale.en ? "Yes" : "Да"}
+        cancelText={activeLocale === Locale.en ? "No" : "Нет"}
+        centered
+        closable={false}
+        style={{
+          marginTop: "-5%",
+        }}
+        className="contentCenter"
+      />
+    </>
   )
 }
 

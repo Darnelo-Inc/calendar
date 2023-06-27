@@ -13,3 +13,9 @@
 .ant-layout {
   background-color: #fff;
 }
+
+.contentCenter > .ant-modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

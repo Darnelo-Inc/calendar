@@ -1,3 +1,3 @@
 export interface IModal {
-  visible: boolean
+  addEventModal: boolean
 }

@@ -14,15 +14,15 @@ import { authSelector } from "../store/selectors"
 import { Locale } from "../models/LocaleState"
 
 const Home: FC = () => {
-  const modalVisible = useAppSelector(modalSelector)
-
+  const { addEventModal } = useAppSelector(modalSelector)
   const { guests, events } = useAppSelector(eventSelector)
-  const { getUsers, addEvent, getEvents, toggleVisible } = useActions()
-  const { user } = useAppSelector(authSelector)
   const activeLocale = useAppSelector(localeSelector)
+  const { user } = useAppSelector(authSelector)
+
+  const { getUsers, addEvent, getEvents, toggleAddEventModal } = useActions()
 
   const submitHandler = (event: IEvent) => {
-    toggleVisible()
+    toggleAddEventModal()
     addEvent(event)
   }
 
@@ -37,8 +37,9 @@ const Home: FC = () => {
 
       <Modal
         title={activeLocale === Locale.en ? "Add Event" : "Создать событие"}
-        open={modalVisible}
-        onCancel={() => toggleVisible()}
+        open={addEventModal}
+        onCancel={() => toggleAddEventModal()}
+        centered
         footer={null}
       >
         <EventForm guests={guests} submit={submitHandler} />
