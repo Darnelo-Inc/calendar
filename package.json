@@ -31,7 +31,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "lint": "eslint -c .eslintrc --ext .ts,.tsx .",
+    "lint:fix": "npm run lint -- --fix"
   },
   "eslintConfig": {
     "extends": [
@@ -52,6 +54,7 @@
     ]
   },
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
     "gh-pages": "^5.0.0"
   },
   "homepage": "https://darnelo-inc.github.io/calendar"

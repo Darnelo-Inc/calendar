@@ -24,6 +24,8 @@ function App() {
     }
   }
 
+  console.log(1)
+
   useEffect(() => {
     if (localStorage.getItem("auth")) {
       localeSetter(getLocale())

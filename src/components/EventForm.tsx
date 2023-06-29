@@ -3,7 +3,7 @@ import { FC, useState } from "react"
 import { rules } from "../utils/rules"
 import { IUser } from "../models/IUser"
 import { IEvent } from "../models/IEvent"
-import { Dayjs } from "dayjs"
+import dayjs, { Dayjs } from "dayjs"
 import { useAppSelector } from "../hooks/useRedux"
 import { authSelector, localeSelector } from "../store/selectors"
 import { setLocale } from "../utils/setLocale"
@@ -69,7 +69,11 @@ const EventForm: FC<EventFormProps> = ({ guests, submit }) => {
         name="date"
         rules={[rules.require()]}
       >
-        <DatePicker onChange={(date) => selectDate(date)} locale={locale} />
+        <DatePicker
+          onChange={(date) => selectDate(date)}
+          locale={locale}
+          defaultValue={dayjs()}
+        />
       </Form.Item>
 
       <Form.Item
