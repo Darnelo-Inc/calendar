@@ -24,15 +24,13 @@ function App() {
     }
   }
 
-  console.log(1)
-
   useEffect(() => {
     if (localStorage.getItem("auth")) {
       localeSetter(getLocale())
       setUser({ username: localStorage.getItem("username" || "") } as IUser)
       setAuth(true)
     }
-  }, [setAuth, setUser, localeSetter])
+  }, [setAuth, setUser]) //eslint-disable-line
 
   return (
     <Layout>
