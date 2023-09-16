@@ -15,7 +15,7 @@ const Nav: FC = () => {
   return (
     <Layout>
       <Layout.Header className={css["nav-header"]}>
-        <h3 className={css.logo}>Scroll Feed</h3>
+        <h3 className={css.logo}>Calendar</h3>
 
         {isAuth && (
           <div className={css.navMenu}>
