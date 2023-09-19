@@ -5,5 +5,5 @@
 React / 
 TypeScript / 
 Ant Design / 
-Redux toolkit /
+Redux Toolkit /
 DayJs
